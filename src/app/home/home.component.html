@@ -1,0 +1,17 @@
+<div>
+  <table>
+    <tr>
+      <th *ngFor="let column of headers">
+        {{ column }}
+      </th>
+    </tr>
+    <tr *ngFor="let row of rows">
+      <td>{{ row.nameAgency }}</td>
+      <td>{{ row.totalSales }}</td>
+      <td>{{ row.comision }}</td>
+      <td>
+        <a routerLink="/empresas/{{ row.nameAgency }}">Ver Detalle</a>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,28 @@
+<div>
+  <p><a routerLink="/empresas">Empresas</a> >{{ nombre_empresa }}</p>
+</div>
+
+<div>
+  <table>
+    <tr>
+      <th *ngFor="let column of headers">{{ column }}</th>
+    </tr>
+    <tr *ngFor="let row of rows">
+      <td>
+        {{ row.name }}
+      </td>
+      <td>
+        {{ row.persons }}
+      </td>
+      <td>
+        {{ row.day }}
+      </td>
+      <td>
+        {{ row.hour }}
+      </td>
+      <td>
+        {{ row.finalPrice }}
+      </td>
+    </tr>
+  </table>
+</div>

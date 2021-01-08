@@ -1,4 +1,12 @@
 <div>
+  <div>
+    <p>Empresas mas ventas</p>
+    <div>{{ getMoreSales() }}</div>
+  </div>
+  <div>
+    <p>Mes con mas ventas</p>
+    <div>{{ monthWithMoreSales() }}</div>
+  </div>
   <table>
     <tr>
       <th *ngFor="let column of headers">

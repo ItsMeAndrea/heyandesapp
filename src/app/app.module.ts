@@ -10,6 +10,11 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DetailsComponent } from './details/details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,11 @@ import { DetailsComponent } from './details/details.component';
     AngularFirestoreModule,
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatTableModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

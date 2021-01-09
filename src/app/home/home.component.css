@@ -1,0 +1,16 @@
+.card {
+  width: 80%;
+}
+
+p {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

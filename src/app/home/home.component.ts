@@ -76,8 +76,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const meses = this.empresas.map((empresa: any) => {
       const date = new Date(empresa.datePayment);
       const month = date.getMonth();
+
       return month;
     });
+
     const uniqueSet = new Set(meses);
     const uniqueMeses = [...uniqueSet];
 
@@ -117,12 +119,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
       monthData.push(data);
     });
 
-    const mothWithMoreSales = monthData.reduce(
-      (a: any, b: any) => (a = a > b.totalMes ? a : b.mes),
+    /*   const finalMonth = monthData.reduce(
+      (a: any, b: any) => (a = a > b.totalMes ? a : b.totalMes),
       0
-    );
+    ); */
 
-    return monthName[mothWithMoreSales];
+    const finalMonth = monthData.length
+      ? monthData.reduce((prev: any, current: any) => {
+          if (+current.totalMes > +prev.totalMes) {
+            return current;
+          } else {
+            return prev;
+          }
+        })
+      : 0;
+
+    return monthName[finalMonth.mes];
   }
 
   formatPrices(price: number) {

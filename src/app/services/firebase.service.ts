@@ -8,8 +8,6 @@ export class FirebaseService {
   constructor(public db: AngularFirestore) {}
 
   createEmpresas(data: any) {
-    console.log(data, 'data');
-
     return this.db.collection('empresas').add({
       nameAgency: data.nameAgency ? data.nameAgency : '',
       createdAt: data.createdAt ? data.createdAt : '',

@@ -36,7 +36,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   }
 
   getData() {
-    console.log('reload on getdata');
     this.firebaseService
       .getEmpresasByName(this.nombre_empresa)
       .subscribe((res) => {
@@ -48,7 +47,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   }
 
   orderData() {
-    this.empresaData.forEach((data) => {
+    this.empresaData.forEach((data: any) => {
       const rowData = {
         name: data.name,
         persons: data.persons,

@@ -36,20 +36,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.empresas = res;
       this.filterEmpresas();
       this.dataSource.data = this.rows;
-      console.log('work');
     });
   }
 
   filterEmpresas() {
-    this.nombreEmpresas = this.empresas.map((empresa) => empresa.nameAgency);
+    this.nombreEmpresas = this.empresas.map(
+      (empresa: any) => empresa.nameAgency
+    );
     const uniqueSet = new Set(this.nombreEmpresas);
     const uniqueNombres = [...uniqueSet];
 
     uniqueNombres.forEach((nombre) => {
       const empresa = this.empresas.filter(
-        (empresa) => empresa.nameAgency === nombre
+        (empresa: any) => empresa.nameAgency === nombre
       );
-      const finalPrice = empresa.map((empresa) => empresa.finalPrice);
+      const finalPrice = empresa.map((empresa: any) => empresa.finalPrice);
 
       const totalSales = finalPrice.reduce((a, b) => a + b, 0);
 
@@ -66,13 +67,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   getMoreSales() {
-    const totalSales = this.rows.map((empresa) => empresa.totalSales);
+    const totalSales = this.rows.map((empresa: any) => empresa.totalSales);
 
     return Math.max(...totalSales);
   }
 
   monthWithMoreSales() {
-    const meses = this.empresas.map((empresa) => {
+    const meses = this.empresas.map((empresa: any) => {
       const date = new Date(empresa.datePayment);
       const month = date.getMonth();
       return month;
@@ -80,7 +81,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const uniqueSet = new Set(meses);
     const uniqueMeses = [...uniqueSet];
 
-    let monthData = [];
+    let monthData: any = [];
 
     const monthName = [
       'Enero',
@@ -98,14 +99,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     ];
 
     uniqueMeses.forEach((mes) => {
-      const datosPorMes = this.empresas.filter((data) => {
+      const datosPorMes = this.empresas.filter((data: any) => {
         const dataMeses = new Date(data.datePayment).getMonth();
 
         return dataMeses === mes;
       });
 
       const totalMes = datosPorMes
-        .map((data) => data.finalPrice)
+        .map((data: any) => data.finalPrice)
         .reduce((a, b) => a + b, 0);
 
       const data = {
@@ -117,7 +118,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
     const mothWithMoreSales = monthData.reduce(
-      (a, b) => (a = a > b.totalMes ? a : b.mes),
+      (a: any, b: any) => (a = a > b.totalMes ? a : b.mes),
       0
     );
 

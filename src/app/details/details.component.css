@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.breadcrumb {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(41, 136, 196);
+}

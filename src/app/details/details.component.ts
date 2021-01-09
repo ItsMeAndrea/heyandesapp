@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, AfterViewInit {
   nombre_empresa = this.activatedRoute.snapshot.params.nombre_empresa;
 
-  headers = ['Nombre cliente', 'Personas', 'Día', 'Hora', 'Valor venta'];
+  headers = ['name', 'persons', 'day', 'hour', 'finalPrice'];
 
   empresaData: Array<unknown> = [];
 
   rows: Array<unknown> = [];
+
+  dataSource = new MatTableDataSource(this.rows);
+
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -25,6 +31,10 @@ export class DetailsComponent implements OnInit {
     this.getData();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
   getData() {
     console.log('reload on getdata');
     this.firebaseService
@@ -33,6 +43,7 @@ export class DetailsComponent implements OnInit {
         this.empresaData = res;
         this.rows = [];
         this.orderData();
+        this.dataSource.data = this.rows;
       });
   }
 
@@ -48,5 +59,10 @@ export class DetailsComponent implements OnInit {
 
       this.rows.push(rowData);
     });
+  }
+
+  formatPrices(price: number) {
+    const formatedCurrency = new Intl.NumberFormat().format(price);
+    return formatedCurrency;
   }
 }

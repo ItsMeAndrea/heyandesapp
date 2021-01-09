@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: rgb(240, 240, 240);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }

@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-  headers = ['Nombre empresa', 'Total ventas', 'Comisión', 'Detalle'];
+export class HomeComponent implements OnInit, AfterViewInit {
+  headers = ['nameAgency', 'totalSales', 'comision', 'detalle'];
 
   empresas: Array<unknown> = [];
 
@@ -15,16 +17,26 @@ export class HomeComponent implements OnInit {
 
   rows: Array<unknown> = [];
 
+  dataSource = new MatTableDataSource(this.rows);
+
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
     this.getData();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
   getData() {
     this.firebaseService.getEmpresas().subscribe((res) => {
       this.empresas = res;
       this.filterEmpresas();
+      this.dataSource.data = this.rows;
+      console.log('work');
     });
   }
 
@@ -110,5 +122,10 @@ export class HomeComponent implements OnInit {
     );
 
     return monthName[mothWithMoreSales];
+  }
+
+  formatPrices(price: number) {
+    const formatedCurrency = new Intl.NumberFormat().format(price);
+    return formatedCurrency;
   }
 }

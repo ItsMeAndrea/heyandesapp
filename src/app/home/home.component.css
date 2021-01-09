@@ -1,5 +1,13 @@
-.card {
+.card-sales {
   width: 80%;
+  background-color: #00b55e;
+  color: white;
+}
+
+.card-month {
+  width: 80%;
+  background-color: #4599d0;
+  color: white;
 }
 
 p {

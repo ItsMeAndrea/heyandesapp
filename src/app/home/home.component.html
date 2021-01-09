@@ -1,7 +1,7 @@
 <div class="container">
   <mat-grid-list cols="2" rowHeight="150px">
     <mat-grid-tile>
-      <mat-card class="card">
+      <mat-card class="card-sales">
         <mat-card-content class="text-center">
           <h3>Empresa con mas ventas</h3>
           <p>{{ formatPrices(getMoreSales()) }}</p>
@@ -10,7 +10,7 @@
     </mat-grid-tile>
 
     <mat-grid-tile>
-      <mat-card class="card">
+      <mat-card class="card-month">
         <mat-card-content class="text-center">
           <h3>Mes con mas Ventas</h3>
           <p>{{ monthWithMoreSales() }}</p>
@@ -46,9 +46,20 @@
     </ng-container>
 
     <ng-container matColumnDef="detalle">
-      <th mat-header-cell *matHeaderCellDef>Detalles</th>
-      <td mat-cell *matCellDef="let element">
-        <a routerLink="/empresas/{{ element.nameAgency }}">Ver detalles</a>
+      <th mat-header-cell *matHeaderCellDef style="text-align: center">
+        Detalles
+      </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button
+          routerLink="/empresas/{{ element.nameAgency }}"
+          color="primary"
+          mat-mini-fab
+          matTooltip="Detalles"
+          aria-label="Botón que dirige al detalle de ventas de la empresa"
+          matTooltipPosition="right"
+        >
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
       </td>
     </ng-container>
 

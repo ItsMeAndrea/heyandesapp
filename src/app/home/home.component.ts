@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource(this.rows);
 
+  isLoading = true;
+
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private firebaseService: FirebaseService) {}
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.empresas = res;
       this.filterEmpresas();
       this.dataSource.data = this.rows;
+      this.isLoading = false;
     });
   }
 

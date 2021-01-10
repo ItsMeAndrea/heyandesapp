@@ -18,6 +18,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { LoaderComponent } from './loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
     HomeComponent,
     NavbarComponent,
     DetailsComponent,
+    LoaderComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -39,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatTooltipModule,
     MatButtonModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
